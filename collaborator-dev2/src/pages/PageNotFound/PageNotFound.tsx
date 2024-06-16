@@ -8,7 +8,7 @@ const PageNotFound = () => (
     status="404"
     title="404"
     subTitle="Desculpe, essa página não existe."
-    extra={<Button type="primary">Back Home</Button>}
+    extra={<Button type="primary">Voltar para Pagina Inicial</Button>}
   />
   </ContainerPageNotFound>
 );

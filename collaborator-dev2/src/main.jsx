@@ -5,11 +5,12 @@ import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <div>Hello world!</div>,
-    errorElement: <div>DEU ERRO</div>
+    errorElement: <PageNotFound />
   },
 ]);
 

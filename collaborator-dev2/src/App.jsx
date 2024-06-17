@@ -35,7 +35,7 @@ const App = () => {
           <ToggleThemeButton darkTheme={darkTheme} toggleTheme={toggleTheme} />
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+        <Header className="site-layout-background" style={{ padding: 0, background: '#2D939C' }}>
             <Button
               type="text"
               className='toggle'
@@ -49,7 +49,7 @@ const App = () => {
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Neki ©2024 Criado por Residentes</Footer>
+          <Footer style={{ textAlign: 'center', background: '#2D939C' }}>Neki ©2024 Criado por Residentes</Footer>
         </Layout>
       </Layout>
     </BrowserRouter>

@@ -1,19 +1,30 @@
-import React from "react";
-import "./App.css";
+// import React from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import PageNotFound from "./pages/PageNotFound/PageNotFound"
+import { Layout } from "antd";
 
-import { Layout, } from "antd";
+import "./App.css";
 
 const { Content, Header, Sider, Footer } = Layout;
 
 const App = () => (
-  <Layout className="Container">
-    <Header className="Header">Header</Header>
-     <Layout className="Container">
-      <Sider className="Sidebar">Sider</Sider>
-        <Content className="Content">Content</Content>
-     </Layout>
-    <Footer className="Footer">Footer</Footer>
-  </Layout>
+  <BrowserRouter>
+    <Layout className="layout">
+      {/* <Navbar /> */}
+      <Header className="header">Header</Header>
+      <Layout className="layout-content">
+        <Sider className="sidebar">Sider</Sider>
+        <Content className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<PageNotFound />} /> {/* Renderiza PageNotFound para todas as rotas não correspondentes */}
+          </Routes>
+        </Content>
+      </Layout>
+      <Footer className="footer">Footer</Footer>
+    </Layout>
+  </BrowserRouter>
 );
 
 export default App;

@@ -32,4 +32,4 @@ const MenuList = ({darkTheme}) => {
     )
 }
 
-export default MenuList;s
+export default MenuList;

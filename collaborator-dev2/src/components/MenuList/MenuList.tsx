@@ -5,13 +5,13 @@ import { HomeOutlined, AppstoreOutlined, AreaChartOutlined, PayCircleOutlined, S
 const MenuList = ({darkTheme}) => {
     return (
         <Menu theme={darkTheme? "dark" : "light"} mode="inline" className="menu-bar">
-            <Menu.Item key="home" icon={<HomeOutlined />}>
-                Home
+            <Menu.Item key="Pagina Inicial" icon={<HomeOutlined />}>
+                Pagina Inicial
             </Menu.Item>
             <Menu.Item key="home2" icon={<AppstoreOutlined />}>
-                home 2
+                Novo Projeto
             </Menu.Item>
-            <Menu.SubMenu key="tasks" icon={<BarsOutlined />} title="Tasks">
+            <Menu.SubMenu key="tasks" icon={<BarsOutlined />} title="Cadastro">
             <Menu.Item key="task-1">Task 1</Menu.Item>
             <Menu.Item key="task-2">Task 2</Menu.Item>
             <Menu.SubMenu key="subtasks" title="Subtasks">
@@ -20,13 +20,13 @@ const MenuList = ({darkTheme}) => {
             </Menu.SubMenu>
             </Menu.SubMenu>
             <Menu.Item key="home3" icon={<AreaChartOutlined />}>
-                Home 3
+                Nova Tarefa
             </Menu.Item>
             <Menu.Item key="home4" icon={<PayCircleOutlined />}>
-                Home 4
+                Configurações
             </Menu.Item>
             <Menu.Item key="home5" icon={<SettingOutlined />}>
-                Home 5
+                Sobre
             </Menu.Item>
         </Menu>
     )

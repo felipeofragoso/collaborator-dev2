@@ -1,30 +1,59 @@
-// import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import Logo from "./components/Logo/Logo";
+import MenuList from "./components/MenuList/MenuList";
 import Home from "./pages/Home/Home";
-import PageNotFound from "./pages/PageNotFound/PageNotFound"
-import { Layout } from "antd";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import ToggleThemeButton from './components/ToggleThemeButton';
+import { Layout, Button } from "antd";
 
 import "./App.css";
 
 const { Content, Header, Sider, Footer } = Layout;
 
-const App = () => (
-  <BrowserRouter>
-    <Layout className="layout">
-      {/* <Navbar /> */}
-      <Header className="header">Header</Header>
-      <Layout className="layout-content">
-        <Sider className="sidebar">Sider</Sider>
-        <Content className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="*" element={<PageNotFound />} /> {/* Renderiza PageNotFound para todas as rotas não correspondentes */}
-          </Routes>
-        </Content>
+const App = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(false);
+
+  const toggleTheme = () => {
+    setDarkTheme(!darkTheme);
+  };
+
+  return (
+    <BrowserRouter>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider
+          collapsed={collapsed}
+          collapsible
+          trigger={null}
+          theme={darkTheme ? "dark" : "light"}
+          className='sidebar'
+        >
+          <Logo />
+          <MenuList darkTheme={darkTheme} />
+          <ToggleThemeButton darkTheme={darkTheme} toggleTheme={toggleTheme} />
+        </Sider>
+        <Layout className="site-layout">
+          <Header className="site-layout-background" style={{ padding: 0 }}>
+            <Button
+              type="text"
+              className='toggle'
+              onClick={() => setCollapsed(!collapsed)}
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            />
+          </Header>
+          <Content style={{ margin: '24px 16px 0' }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Neki ©2024 Criado por Residentes</Footer>
+        </Layout>
       </Layout>
-      <Footer className="footer">Footer</Footer>
-    </Layout>
-  </BrowserRouter>
-);
+    </BrowserRouter>
+  );
+};
 
 export default App;

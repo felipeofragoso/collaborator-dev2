@@ -1,35 +1,35 @@
-/* Estilos CSS */
+Estilos CSS
 .container {
-    max-width: 100%; /* Garante que o conteúdo não ultrapasse a largura da tela */
-    padding: 0 20px; /* Adicione espaçamento opcional para margens */
-    box-sizing: border-box; /* Garante que padding não aumente o tamanho do container */
+    max-width: 100%; 
+    padding: 0 20px; 
+    box-sizing: border-box; 
 
-    /* Exemplo de estilos para centralizar conteúdo na tela */
+    
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .logo-img {
-    max-width: 100%; /* A imagem ocupará toda a largura disponível */
-    height: auto; /* Mantém a proporção da imagem */
-    margin-bottom: 20px; /* Espaço opcional abaixo da imagem */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
 }
 
-/* Estilos CSS */
-.container {
-    max-width: 100%; /* Garante que o conteúdo não ultrapasse a largura da tela */
-    padding: 0 20px; /* Adicione espaçamento opcional para margens */
-    box-sizing: border-box; /* Garante que padding não aumente o tamanho do container */
 
-    /* Exemplo de estilos para centralizar conteúdo na tela */
+.container {
+    max-width: 100%; 
+    padding: 0 20px; 
+    box-sizing: border-box;
+
+    
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .logo-img {
-    max-width: 100vh; /* A imagem ocupará toda a largura disponível */
-    height: auto; /* Mantém a proporção da imagem */
-    margin-bottom: 20px; /* Espaço opcional abaixo da imagem */
+    max-width: 100vh; 
+    height: auto; 
+    margin-bottom: 20px; 
 }

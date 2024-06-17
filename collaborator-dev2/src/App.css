@@ -113,8 +113,5 @@ label {
     flex-direction: column;
   }
   
-  .col-1, .col-2 {
-    flex: 1;
-    width: 100%;
-  }
+  .col-1, .col-2
 }

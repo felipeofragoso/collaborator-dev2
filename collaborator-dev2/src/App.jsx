@@ -31,7 +31,8 @@ const App = () => {
           trigger={null}
           theme={darkTheme ? "dark" : "light"}
           className='sidebar'
-        >
+          
+          >
           <Logo />
           <MenuList darkTheme={darkTheme} />
           <ToggleThemeButton darkTheme={darkTheme} toggleTheme={toggleTheme} />
@@ -45,7 +46,7 @@ const App = () => {
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             />
           </Header>
-          <Content style={{ margin: '24px 16px 0' }}>
+          <Content style={{ margin: '24px 16px 0', minHeight: 280 }}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="*" element={<PageNotFound />} />

@@ -5,10 +5,12 @@ import Logo from "./components/Logo/Logo";
 import MenuList from "./components/MenuList/MenuList";
 import Home from "./pages/Home/Home";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import Registrations from "./pages/Registrations/Registrations";
 import ToggleThemeButton from './components/ToggleThemeButton';
 import { Layout, Button } from "antd";
 
 import "./App.css";
+
 
 const { Content, Header, Sider, Footer } = Layout;
 
@@ -47,6 +49,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="*" element={<PageNotFound />} />
+              <Route path="/Registrations" element={<Registrations />} />
             </Routes>
           </Content>
           <Footer style={{ textAlign: 'center', background: darkTheme ? '#001529' : '#2D939C', color: darkTheme ? '#fff' : '#000' }}>

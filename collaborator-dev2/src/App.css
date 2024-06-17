@@ -7,6 +7,8 @@
   font-weight: 500;
 }
 
+/* Estilos básicos para todos os elementos */
+
 form {
   display: flex;
   flex-direction: column;
@@ -20,31 +22,30 @@ label {
 .Button {
   margin: 5px 0;
   background-color: #2cbeb7;
-  border: #2cbeb7;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .Input {
   margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-
 
 .Span {
   text-decoration: underline;
 }
 
-.Header {
-  background-color: #2D939C;
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.Footer {
+.Header, .Footer, .Sidebar {
   background-color: #2D939C;
   color: #fff;
   text-align: center;
   font-size: 24px;
   font-weight: bold;
+  padding: 10px 0;
 }
 
 .Content {
@@ -57,61 +58,63 @@ label {
   font-weight: bold;
 }
 
-.ant-typography {
+.ant-typography, .ant-layout-sider-children {
   font-size: 20px;
   font-weight: bold;
 }
 
-.ant-layout-sider-children {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.Sidebar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #2cbeb7;
-  color: #fff;
-}
-
 .Container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .Image {
- height: 600px;
+  max-width: 100%;
+  height: auto;
 }
-
 
 .Grid {
   display: flex;
-  justify-content: center;
-  height: 100%;
+  flex-wrap: wrap;
 }
 
 .col-1 {
   background-color: #f2f4f7;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  color: #333;
+  flex: 1;
+  padding: 20px;
 }
 
 .col-2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background-color: #fff;
+  color: #333;
+  flex: 2;
+  padding: 20px;
 }
 
-.col-2 > .col-2-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-  width: 70%;
+/* Estilos específicos para telas menores (celulares) */
+@media (max-width: 768px) {
+  .Button {
+    width: 100%;
+  }
+  
+  .Input {
+    width: 100%;
+  }
+  
+  .Content {
+    font-size: 20px;
+  }
+  
+  .Header, .Footer, .Sidebar {
+    font-size: 20px;
+  }
+  
+  .Grid {
+    flex-direction: column;
+  }
+  
+  .col-1, .col-2 {
+    flex: 1;
+    width: 100%;
+  }
 }

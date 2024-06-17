@@ -1,5 +1,6 @@
+import React from "react";
 import { Menu } from "antd";
-import { HomeOutlined, AppstoreOutlined, AreaChartOutlined, PayCircleOutlined, SettingOutlined, BarsOutlined } from "@ant-design/icons";
+import { HomeOutlined, PlusSquareOutlined, AreaChartOutlined, TeamOutlined, SettingOutlined, BarsOutlined } from "@ant-design/icons";
 
 
 const MenuList = ({darkTheme}) => {
@@ -8,7 +9,7 @@ const MenuList = ({darkTheme}) => {
             <Menu.Item key="Pagina Inicial" icon={<HomeOutlined />}>
                 Pagina Inicial
             </Menu.Item>
-            <Menu.Item key="home2" icon={<AppstoreOutlined />}>
+            <Menu.Item key="home2" icon={<PlusSquareOutlined />}>
                 Novo Projeto
             </Menu.Item>
             <Menu.SubMenu key="tasks" icon={<BarsOutlined />} title="Cadastro">
@@ -22,10 +23,10 @@ const MenuList = ({darkTheme}) => {
             <Menu.Item key="home3" icon={<AreaChartOutlined />}>
                 Nova Tarefa
             </Menu.Item>
-            <Menu.Item key="home4" icon={<PayCircleOutlined />}>
+            <Menu.Item key="home4" icon={<SettingOutlined />}>
                 Configurações
             </Menu.Item>
-            <Menu.Item key="home5" icon={<SettingOutlined />}>
+            <Menu.Item key="home5" icon={<TeamOutlined />}>
                 Sobre
             </Menu.Item>
         </Menu>

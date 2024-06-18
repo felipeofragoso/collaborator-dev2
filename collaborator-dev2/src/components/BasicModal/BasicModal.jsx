@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/img/logo.png';
 import { useTranslation } from "react-i18next";
 
+
+
 const { Text } = Typography;
 
 const BasicModal = ({ modalOpen, setModalOpen }) => {
@@ -13,6 +15,10 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
   const handleClose = () => {
     setModalOpen(false);
   };
+  const handleNavigate = (path) => {
+    handleClose();  // Close the modal first
+    navigate(path); // Then navigate to the new route
+    }
 
   return (
     <Modal
@@ -27,7 +33,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
       footer={null}
       centered
       width={447}
-      bodyStyle={{
+      style={{
         padding: '24px',
         borderRadius: '10px',
         border: '2px solid gray',
@@ -61,7 +67,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
-          onClick={handleClose}
+          onClick={() => handleNavigate('/Function')}
           style={{ marginBottom: '16px', width: '100%' }}
         >
           {t("Funções")} 
@@ -70,7 +76,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
-          onClick={handleClose}
+          onClick={() => handleNavigate('/EventReason')}
           style={{ marginBottom: '16px', width: '100%' }}
         >
           {t("Motivos de Eventos")}
@@ -78,7 +84,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
-          onClick={handleClose}
+          onClick={() => handleNavigate('/Messages')}
           style={{ marginBottom: '16px', width: '100%' }}
         >
           {t("Mensagens")}
@@ -86,7 +92,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
-          onClick={handleClose}
+          onClick={() => handleNavigate('/Alm')}
           style={{ marginBottom: '16px', width: '100%' }}
         >
           {t("ALM")}
@@ -94,8 +100,8 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="primary"
-          onClick={() => navigate('/')}
-          style={{ marginBottom: '16px', width: '100%' }}
+          onClick={() => handleNavigate('/')}
+          style={{ marginBottom: '16px', width: '100%',  background:'linear-gradient(to bottom, #2d939c, #68C7CF)' }}
         >
           {t("Pagina Inicial")}
         </Button>

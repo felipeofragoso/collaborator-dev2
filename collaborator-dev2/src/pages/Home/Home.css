@@ -1,35 +1,7 @@
-Estilos CSS
 .container {
     max-width: 100%; 
-    padding: 0 20px; 
-    box-sizing: border-box; 
-
-    
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.logo-img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-
-.container {
-    max-width: 100%; 
-    padding: 0 20px; 
-    box-sizing: border-box;
-
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.logo-img {
-    max-width: 100vh; 
-    height: auto; 
-    margin-bottom: 20px; 
-}

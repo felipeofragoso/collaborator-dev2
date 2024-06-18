@@ -3,6 +3,7 @@ import { Menu } from "antd";
 import { HomeOutlined, PlusSquareOutlined, AreaChartOutlined, TeamOutlined, EditOutlined, SettingOutlined, BarsOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import BasicModal from "../BasicModal/BasicModal";
+import "./Menu.css" 
 
 const MenuList = ({ darkTheme }) => {
     const [modalOpen, setModalOpen] = useState(false);

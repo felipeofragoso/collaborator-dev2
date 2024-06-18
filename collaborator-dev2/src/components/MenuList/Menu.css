@@ -1,0 +1,11 @@
+:where(.css-dev-only-do-not-override-zg0ahe).ant-menu-light .ant-menu-item-selected, :where(.css-dev-only-do-not-override-zg0ahe).ant-menu-light>.ant-menu .ant-menu-item-selected{
+
+    background:linear-gradient(to bottom, #2d939c, #68C7CF)
+}   
+:where(.css-dev-only-do-not-override-zg0ahe).ant-menu-dark .ant-menu-item-selected, :where(.css-dev-only-do-not-override-zg0ahe).ant-menu-dark>.ant-menu .ant-menu-item-selected{
+    background:linear-gradient(to bottom, #2d939c, #68C7CF)
+
+}
+:where(.css-dev-only-do-not-override-zg0ahe).ant-menu-light .ant-menu-item-selected, :where(.css-dev-only-do-not-override-zg0ahe).ant-menu-light>.ant-menu .ant-menu-item-selected {
+    color: black;
+}

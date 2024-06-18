@@ -8,9 +8,9 @@ const initialData = [];
 for (let i = 1; i <= 10; i++) {
   initialData.push({
     key: i,
-    name: 'John Brown',
-    age: Number(`${i}2`),
-    address: `New York No. ${i} Lake Park`,
+    nome: 'Python',
+    descricao: Number(`${i}2`),
+    status: `New York No. ${i} Lake Park`,
     description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
   });
 }
@@ -32,9 +32,9 @@ const TableFunction = () => {
   const handleSearch = (value) => {
     setSearchText(value);
     const filtered = initialData.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase()) ||
-      item.age.toString().includes(value) ||
-      item.address.toLowerCase().includes(value.toLowerCase())
+      item.nome.toLowerCase().includes(value.toLowerCase()) ||
+      item.descricao.toString().includes(value) ||
+      item.status.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredData(filtered);
   };
@@ -99,19 +99,19 @@ const TableFunction = () => {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
+      title: 'Nome',
+      dataIndex: 'nome',
       width: 150,
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      sorter: (a, b) => a.age - b.age,
+      title: 'Descrição',
+      dataIndex: 'descricao',
+      sorter: (a, b) => a.descricao - b.descricao,
       width: 80,
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
+      title: 'Status',
+      dataIndex: 'status',
       width: 200,
       filters: [
         {
@@ -123,17 +123,17 @@ const TableFunction = () => {
           value: 'New York',
         },
       ],
-      onFilter: (value, record) => record.address.indexOf(value) === 0,
+      onFilter: (value, record) => record.status.indexOf(value) === 0,
     },
     {
-      title: 'Action',
-      key: 'action',
+      title: 'Ação',
+      key: 'acao',
       width: 150,
       render: (_, record) => (
         <Space size="middle">
-          <Button onClick={() => showEditModal(record)}>Edit</Button>
-          <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-            <a>Delete</a>
+          <Button onClick={() => showEditModal(record)}>Editar</Button>
+          <Popconfirm title="Tem certeza que deseja excluir?" onConfirm={() => handleDelete(record.key)}>
+            <a>Deletar</a>
           </Popconfirm>
         </Space>
       ),
@@ -155,7 +155,7 @@ const TableFunction = () => {
     <>
       <Space style={{ marginBottom: 16 }}>
         <Search
-          placeholder="Search..."
+          placeholder="Procurar..."
           enterButton
           onSearch={handleSearch}
         />
@@ -183,23 +183,23 @@ const TableFunction = () => {
           name="form_in_modal"
         >
           <Form.Item
-            name="name"
-            label="Name"
-            rules={[{ required: true, message: 'Please input the name!' }]}
+            name="nome"
+            label="Nome"
+            rules={[{ required: true, message: 'Por favor, insira o nome!' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            name="age"
-            label="Age"
-            rules={[{ required: true, message: 'Please input the age!' }]}
+            name="descricao"
+            label="Descrição"
+            rules={[{ required: true, message: 'Por favor, insira a descrição!' }]}
           >
             <InputNumber min={0} />
           </Form.Item>
           <Form.Item
-            name="address"
-            label="Address"
-            rules={[{ required: true, message: 'Please input the address!' }]}
+            name="status"
+            label="Status"
+            rules={[{ required: true, message: 'Por favor, insira o status!' }]}
           >
             <Input />
           </Form.Item>
@@ -217,23 +217,23 @@ const TableFunction = () => {
           name="form_in_modal"
         >
           <Form.Item
-            name="name"
-            label="Name"
-            rules={[{ required: true, message: 'Please input the name!' }]}
+            name="nome"
+            label="Nome"
+            rules={[{ required: true, message: 'Por favor, insira o nome!' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            name="age"
-            label="Age"
-            rules={[{ required: true, message: 'Please input the age!' }]}
+            name="descricao"
+            label="Descrição"
+            rules={[{ required: true, message: 'Por favor, insira a descrição!' }]}
           >
             <InputNumber min={0} />
           </Form.Item>
           <Form.Item
-            name="address"
-            label="Address"
-            rules={[{ required: true, message: 'Please input the address!' }]}
+            name="status"
+            label="Status"
+            rules={[{ required: true, message: 'Por favor, insira o status!' }]}
           >
             <Input />
           </Form.Item>

@@ -6,3 +6,14 @@
   :where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper .ant-table-footer{
     background: linear-gradient(to bottom, #2d939c, #68C7CF);
   }
+
+  /* :where(.css-dev-only-do-not-override-zg0ahe).ant-btn-primary {
+    background: linear-gradient(to bottom, #2d939c, #68C7CF);
+
+  } */
+
+
+
+  /* .ant-btn-primary {
+    background: linear-gradient(to bottom, #2d939c, #68C7CF);
+  } */

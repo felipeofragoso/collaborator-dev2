@@ -3,7 +3,11 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import Logo from "./components/Logo/Logo";
 import MenuList from "./components/MenuList/MenuList";
+import Alm from "./pages/Alm/Alm";
+import EventReason from "./pages/EventReason/EventReason";
+import Messages from "./pages/Messages/Messages";
 import Home from "./pages/Home/Home";
+import Function from "./pages/Function/Function";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Registrations from "./pages/Registrations/Registrations";
 import ToggleThemeButton from './components/ToggleThemeButton';
@@ -46,9 +50,31 @@ const App = () => {
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             />
           </Header>
-          <Content style={{ margin: '24px 16px 0', minHeight: 280 }}>
+          <Content
+          style={{
+            margin: '24px 16px 0',
+          }}
+        >
+          {/* <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+              height: '80vh',
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}
+          >
+            </div> */}
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/Alm" element={<Alm />} />
+              <Route path="/EventReason" element={<EventReason />} />
+              <Route path="/Function" element={<Function />} />
+              <Route path="/Messages" element={<Messages />} />
+              
               <Route path="*" element={<PageNotFound />} />
               <Route path="/Registrations" element={<Registrations />} />
             </Routes>

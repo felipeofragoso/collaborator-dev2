@@ -64,7 +64,8 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
           onClick={handleClose}
           style={{ marginBottom: '16px', width: '100%' }}
         >
-          {t("Funções")}
+          {t("Funções")} 
+          
         </Button>
 
         <Button

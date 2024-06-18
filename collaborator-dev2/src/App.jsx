@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import Logo from "./components/Logo/Logo";
-import MenuList from "./components/MenuList/MenuList";
-import Alm from "./pages/Alm/Alm";
-import EventReason from "./pages/EventReason/EventReason";
-import Messages from "./pages/Messages/Messages";
-import Home from "./pages/Home/Home";
-import Function from "./pages/Function/Function";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import Registrations from "./pages/Registrations/Registrations";
+import Logo from './components/Logo/Logo';
+import MenuList from './components/MenuList/MenuList';
+import Alm from './pages/Alm/Alm';
+import EventReason from './pages/EventReason/EventReason';
+import Messages from './pages/Messages/Messages';
+import Home from './pages/Home/Home';
+import Function from './pages/Function/Function';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
+import Registrations from './pages/Registrations/Registrations';
 import ToggleThemeButton from './components/ToggleThemeButton';
-import { Layout, Button } from "antd";
+import { Layout, Button } from 'antd';
 
-import "./App.css";
-
+import './App.css';
 
 const { Content, Header, Sider, Footer } = Layout;
 
@@ -33,34 +32,41 @@ const App = () => {
           collapsed={collapsed}
           collapsible
           trigger={null}
-          theme={darkTheme ? "dark" : "light"}
-          className='sidebar'
-          
-          >
+          theme={darkTheme ? 'dark' : 'light'}
+          className="sidebar"
+        >
           <Logo />
           <MenuList darkTheme={darkTheme} />
           <ToggleThemeButton darkTheme={darkTheme} toggleTheme={toggleTheme} />
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0, background: darkTheme ? 'linear-gradient(to bottom, #2d939c, #68C7CF)' : 'linear-gradient(to bottom, #2d939c, #68C7CF)' }}>
+          <Header
+            className="site-layout-background"
+            style={{
+              padding: 0,
+              background: darkTheme
+                ? 'linear-gradient(to bottom, #2d939c, #68C7CF)'
+                : 'linear-gradient(to bottom, #2d939c, #68C7CF)',
+            }}
+          >
             <Button
               type="text"
-              className='toggle'
+              className="toggle"
               onClick={() => setCollapsed(!collapsed)}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             />
           </Header>
           <Content
-          style={{
-            margin: '24px 16px 0',
-            maxWidth: '100%', 
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '5vh'
-          }}
-        >
-          {/* <div
+            style={{
+              margin: '24px 16px 0',
+              maxWidth: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '5vh',
+            }}
+          >
+            {/* <div
             style={{
               padding: 24,
               minHeight: 360,
@@ -79,12 +85,20 @@ const App = () => {
               <Route path="/EventReason" element={<EventReason />} />
               <Route path="/Function" element={<Function />} />
               <Route path="/Messages" element={<Messages />} />
-              
+
               <Route path="*" element={<PageNotFound />} />
               <Route path="/Registrations" element={<Registrations />} />
             </Routes>
           </Content>
-          <Footer style={{ textAlign: 'center', background: darkTheme ? 'linear-gradient(to bottom, #2d939c, #68C7CF)' : 'linear-gradient(to bottom, #2d939c, #68C7CF)', color: darkTheme ? '#fff' : '#000' }}>
+          <Footer
+            style={{
+              textAlign: 'center',
+              background: darkTheme
+                ? 'linear-gradient(to bottom, #2d939c, #68C7CF)'
+                : 'linear-gradient(to bottom, #2d939c, #68C7CF)',
+              color: darkTheme ? '#fff' : '#000',
+            }}
+          >
             Neki ©2024 Criado por Residentes
           </Footer>
         </Layout>

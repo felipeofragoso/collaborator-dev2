@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { Space, Table, Grid, Input, Button, Modal, Form, InputNumber, Popconfirm } from 'antd';
-import "./Table.css"
+import './Table.css';
 
 const { useBreakpoint } = Grid;
 const { Search } = Input;
 
 const initialData = [];
+
 for (let i = 1; i <= 10; i++) {
   initialData.push({
     key: i,
-    name: 'John Brown',
+    name: 'teste',
     age: Number(`${i}2`),
     address: `New York No. ${i} Lake Park`,
     description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
+    login: 'qualquer coisa',
+    senha: 123454,
+    tipo: 'qualquer tipo ',
   });
 }
 
 const defaultTitle = () => 'Alm';
 const defaultFooter = () => 'footer';
+
+// Componente de tabela
 
 const TableAlm = () => {
   const screens = useBreakpoint();
@@ -30,16 +36,20 @@ const TableAlm = () => {
   const [editingItem, setEditingItem] = useState(null);
   const [form] = Form.useForm();
 
+  // essa função é para filtrar a tabela
   const handleSearch = (value) => {
     setSearchText(value);
-    const filtered = initialData.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase()) ||
-      item.age.toString().includes(value) ||
-      item.address.toLowerCase().includes(value.toLowerCase())
+    const filtered = initialData.filter(
+      (item) =>
+        item.name.toLowerCase().includes(value.toLowerCase()) ||
+        item.age.toString().includes(value) ||
+        item.address.toLowerCase().includes(value.toLowerCase()),
     );
     setFilteredData(filtered);
   };
+  // FIM ############# lógica filtrar ALM
 
+  // essa função é para abrir e fechar o modal de cadastro de ALM
   const showAddModal = () => {
     setIsAddModalVisible(true);
   };
@@ -47,11 +57,13 @@ const TableAlm = () => {
   const handleAddCancel = () => {
     setIsAddModalVisible(false);
   };
+  // FIM ############# lógica abrir e fechar modal de cadastro de ALM
 
+  // essa função é para clicar no botão de ok no modal de cadastro de ALM
   const handleAdd = () => {
     form
       .validateFields()
-      .then(values => {
+      .then((values) => {
         form.resetFields();
         setIsAddModalVisible(false);
         const newItem = {
@@ -60,44 +72,47 @@ const TableAlm = () => {
         };
         setFilteredData([...filteredData, newItem]);
       })
-      .catch(info => {
+      .catch((info) => {
         console.log('Validate Failed:', info);
       });
   };
 
+  // essa função é para abrir o modal de edição de um item
   const showEditModal = (item) => {
     setEditingItem(item);
     form.setFieldsValue(item);
     setIsEditModalVisible(true);
   };
-
+  // essa função é para fechar o modal de edição de um item
   const handleEditCancel = () => {
     setIsEditModalVisible(false);
     setEditingItem(null);
   };
-
+  //  essa função é para salvar o item editado
   const handleEdit = () => {
     form
       .validateFields()
-      .then(values => {
+      .then((values) => {
         form.resetFields();
         setIsEditModalVisible(false);
-        const updatedData = filteredData.map((item) => 
-          item.key === editingItem.key ? { ...item, ...values } : item
+        const updatedData = filteredData.map((item) =>
+          item.key === editingItem.key ? { ...item, ...values } : item,
         );
         setFilteredData(updatedData);
         setEditingItem(null);
       })
-      .catch(info => {
+      .catch((info) => {
         console.log('Validate Failed:', info);
       });
   };
 
+  // essa função é para deletar um item da tabela
   const handleDelete = (key) => {
     const newData = filteredData.filter((item) => item.key !== key);
     setFilteredData(newData);
   };
 
+  // esse array é para definir as colunas da tabela
   const columns = [
     {
       title: 'Name',
@@ -109,6 +124,26 @@ const TableAlm = () => {
       dataIndex: 'age',
       sorter: (a, b) => a.age - b.age,
       width: 80,
+    },
+    {
+      title: 'Login',
+      dataIndex: 'name',
+      width: 150,
+    },
+    {
+      title: 'senha',
+      dataIndex: 'name',
+      width: 150,
+    },
+    {
+      title: 'tipo',
+      dataIndex: 'name',
+      width: 150,
+    },
+    {
+      title: 'vpn',
+      dataIndex: 'name',
+      width: 150,
     },
     {
       title: 'Address',
@@ -141,6 +176,7 @@ const TableAlm = () => {
     },
   ];
 
+  // essa função é para definir a tabela
   const tableProps = {
     bordered: true,
     size: 'small',
@@ -154,21 +190,26 @@ const TableAlm = () => {
 
   return (
     <>
+      {/* Container botao e barra de pesquisa */}
       <Space style={{ marginBottom: 16 }}>
         <Search
           placeholder="Search..."
           enterButton
           onSearch={handleSearch}
-          backgroud= "linear-gradient(to bottom, #2d939c, #68C7CF)"
+          backgroud="linear-gradient(to bottom, #2d939c, #68C7CF)"
         />
-          <Button 
-      type="primary" 
-      onClick={showAddModal} 
-      style={{ background: 'linear-gradient(to bottom, #2d939c, #68C7CF)', border: 'none' }}
-    >
-      Cadastrar
-    </Button>
+        <Button
+          type="primary"
+          onClick={showAddModal}
+          style={{ background: 'linear-gradient(to bottom, #2d939c, #68C7CF)', border: 'none' }}
+        >
+          Cadastrar
+        </Button>
       </Space>
+
+      {/* FIM ############# Container botao e barra de pesquisa */}
+
+      {/* Tabela modal */}
       <Table
         {...tableProps}
         pagination={{
@@ -177,17 +218,17 @@ const TableAlm = () => {
         columns={columns}
         dataSource={filteredData}
       />
+      {/* FIM ############# Tabela modal */}
+
+     
+      {/* Esse modal é para cadastrar um novo item na tabela */}
       <Modal
         title="Cadastrar Novo Item"
         visible={isAddModalVisible}
         onCancel={handleAddCancel}
         onOk={handleAdd}
       >
-        <Form
-          form={form}
-          layout="vertical"
-          name="form_in_modal"
-        >
+        <Form form={form} layout="vertical" name="form_in_modal">
           <Form.Item
             name="name"
             label="Name"
@@ -211,17 +252,17 @@ const TableAlm = () => {
           </Form.Item>
         </Form>
       </Modal>
+      {/* FIM ############# Modal Cadastrar Alm */}
+
+      {/* Esse modal é para editar um item na tabela */}
+
       <Modal
         title="Editar Item"
         visible={isEditModalVisible}
         onCancel={handleEditCancel}
         onOk={handleEdit}
       >
-        <Form
-          form={form}
-          layout="vertical"
-          name="form_in_modal"
-        >
+        <Form form={form} layout="vertical" name="form_in_modal">
           <Form.Item
             name="name"
             label="Name"
@@ -245,6 +286,7 @@ const TableAlm = () => {
           </Form.Item>
         </Form>
       </Modal>
+      {/* FIM ############# Modal Editar Alm */}
     </>
   );
 };

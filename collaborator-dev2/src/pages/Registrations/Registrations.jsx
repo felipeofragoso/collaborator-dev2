@@ -6,7 +6,8 @@ const Registrations = () => {
   return (
     <div>
       <h1>Teste Modal</h1>
-      <button onClick={() => setModalOpen(true)}>Abrir Modal</button>
+      <button onClick={() => setModalOpen(true)}
+        aria-label='botão para abrir um modal'>Abrir Modal</button>
 
       <BasicModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>

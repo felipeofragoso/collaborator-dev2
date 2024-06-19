@@ -4,9 +4,11 @@ import { HomeOutlined, PlusSquareOutlined, AreaChartOutlined, TeamOutlined, Edit
 import { NavLink } from "react-router-dom";
 import BasicModal from "../BasicModal/BasicModal";
 import "./Menu.css" 
+import { useTranslation } from 'react-i18next';
 
 const MenuList = ({ darkTheme }) => {
     const [modalOpen, setModalOpen] = useState(false);
+    const { t } = useTranslation();
 
     const handleMenuClick = ({ key }) => {
         if (key === "cadastro") {
@@ -23,25 +25,22 @@ const MenuList = ({ darkTheme }) => {
                 onClick={handleMenuClick}
             >
                 <Menu.Item key="paginaInicial" icon={<HomeOutlined />}>
-                    <NavLink to="/" activeClassName="active-link">Página Inicial</NavLink>
+                    <NavLink to="/" activeClassName="active-link">{t("Página Inicial")}</NavLink>
                 </Menu.Item>
                 <Menu.Item key="novoProjeto" icon={<PlusSquareOutlined />}>
-                    Novo Projeto
+                  {t("Novo Projeto")}
                 </Menu.Item>
                 <Menu.Item key="novaTarefa" icon={<BarsOutlined />}>
-                    Nova Tarefa
+                {t("Nova Tarefa")} 
                 </Menu.Item>
                 <Menu.Item key="relatorios" icon={<AreaChartOutlined />}>
-                    Relatórios
+                {t("Relatórios")} 
                 </Menu.Item>
                 <Menu.Item key="cadastro" icon={<EditOutlined />}>
-                    Cadastro
+                {t("Cadastro")}
                 </Menu.Item>
                 <Menu.Item key="configuracoes" icon={<SettingOutlined />}>
-                    Configurações
-                </Menu.Item>
-                <Menu.Item key="sobre" icon={<TeamOutlined />}>
-                    Sobre
+                {t("Configurações")} 
                 </Menu.Item>
             </Menu>
             <BasicModal modalOpen={modalOpen} setModalOpen={setModalOpen} />

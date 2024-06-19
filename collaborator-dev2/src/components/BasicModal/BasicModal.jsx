@@ -43,6 +43,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
       <div>
         <Button
           type="text"
+          aria-label='botão para acessar página clientes'
           onClick={handleClose}
           style={{ marginBottom: '16px', width: '100%' }}
         >
@@ -51,6 +52,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
+          aria-label='botão para acessar página de custos extras'
           onClick={handleClose}
           style={{ marginBottom: '16px', width: '100%' }}
         >
@@ -59,6 +61,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
+          aria-label='botão para acessar página de tecnologia'
           onClick={handleClose}
           style={{ marginBottom: '16px', width: '100%' }}
         >
@@ -67,6 +70,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
+          aria-label='botão para acessar página de funções'
           onClick={() => handleNavigate('/Function')}
           style={{ marginBottom: '16px', width: '100%' }}
         >
@@ -76,6 +80,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
+          aria-label='botão para acessar página motivos de eventos '
           onClick={() => handleNavigate('/EventReason')}
           style={{ marginBottom: '16px', width: '100%' }}
         >
@@ -84,6 +89,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
+          aria-label='botão para acessar página mensagens'
           onClick={() => handleNavigate('/Messages')}
           style={{ marginBottom: '16px', width: '100%' }}
         >
@@ -92,6 +98,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="text"
+          aria-label='botão para acessar página alm'
           onClick={() => handleNavigate('/Alm')}
           style={{ marginBottom: '16px', width: '100%' }}
         >
@@ -100,6 +107,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
 
         <Button
           type="primary"
+          aria-label='botão para acessar página inicial'
           onClick={() => handleNavigate('/')}
           style={{ marginBottom: '16px', width: '100%',  background:'linear-gradient(to bottom, #2d939c, #68C7CF)' }}
         >

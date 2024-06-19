@@ -17,7 +17,7 @@ import './Table.css';
 const { useBreakpoint } = Grid;
 const { Search } = Input;
 
-const initialData = [];
+// const initialData = [];
 
 const defaultTitle = () => 'Alm';
 const defaultFooter = () => 'footer';
@@ -27,9 +27,8 @@ const defaultFooter = () => 'footer';
 const TableAlm = () => {
   const screens = useBreakpoint();
   const isSmallScreen = screens.xs; // Consider xs as small screen
-
   const [searchText, setSearchText] = useState('');
-  const [filteredData, setFilteredData] = useState(initialData);
+  const [filteredData, setFilteredData] = useState([]);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -44,20 +43,31 @@ const TableAlm = () => {
     status: '',
   });
   const [status, setStatus] = useState(false);
-  const [dataAlm, setDataAlm] = useState([]);
+  // const [dataAlm, setDataAlm] = useState([]);
 
   // Chamando os dados do banco e guardando em um useState para poder usar na lista, é preciso usar useEffect para não criar o erro do loop infinito na renderização
   useEffect(() => {
     const response = async () => {
-      const pegandoAlm = await getAlm();
-      console.log(pegandoAlm);
-      setDataAlm(pegandoAlm);
+      const dadosAlm = await getAlm();
+      const setDadosAlm = dadosAlm?.map((item) => ({
+        id: item.idAlmTool,
+        nome: item.nome,
+        url: item.url,
+        login: item.login,
+        senha: item.senha,
+        tipo: item.tipo,
+        vpn: item.vpn,
+        status: item.status,
+      }));
+      // console.log(setDadosAlm);
+      // setDataAlm(setDadosAlm);
+      setFilteredData(setDadosAlm);
     };
 
     response();
   }, []);
 
-  // essa função é para filtrar a tabela
+  // essa função é para utilizar a barra de pesquisa
   const handleSearch = (value) => {
     setSearchText(value);
     const filtered = initialData.filter(
@@ -80,7 +90,7 @@ const TableAlm = () => {
   };
   // FIM ############# lógica abrir e fechar modal de cadastro de ALM
 
-  // essa função é para clicar no botão de OK dentro do modal de cadastro de ALM
+  // essa função é para clicar no botão de OK dentro do modal de cadastrar
   const handleAdd = () => {
     if (
       cadastro.nome !== '' &&
@@ -125,7 +135,7 @@ const TableAlm = () => {
     setEditingItem(null);
   };
 
-  //  essa função é para salvar o item editado
+  //  essa função para editar utilizando a coluna ação
 
   const handleEdit = () => {
     form
@@ -144,49 +154,61 @@ const TableAlm = () => {
       });
   };
 
-  // essa função é para deletar um item da tabela
+  // essa função é para deletar um item da tabela usando o botão de deletar da coluna ação
   const handleDelete = (key) => {
     const newData = filteredData.filter((item) => item.key !== key);
-    setFilteredData(newData);
+    // setFilteredData(newData);
   };
 
   // esse array é para definir as colunas da tabela
   const columns = [
     {
-      title: 'Nome',
-      dataIndex: 'name',
-      width: 150,
+      title: 'Id',
+      dataIndex: 'id',
+      sorter: (a, b) => a.id - b.id, //método para ordenar a coluna id
+      width: 50,
     },
     {
-      title: 'Age trocar',
-      dataIndex: 'age',
-      sorter: (a, b) => a.age - b.age,
-      width: 80,
+      title: 'Nome',
+      dataIndex: 'nome',
+      //how can I sort this column?
+
+      width: 150,
     },
+    // {
+    //   title: 'Age trocar',
+    //   dataIndex: 'age',
+    //   sorter: (a, b) => a.age - b.age,
+    //   width: 80,
+    // },
     {
       title: 'Login',
       dataIndex: 'login',
+
       width: 150,
     },
     {
       title: 'Senha',
       dataIndex: 'senha',
+
       width: 150,
     },
     {
       title: 'Tipo',
       dataIndex: 'tipo',
+
       width: 150,
     },
     {
       title: 'Vpn',
       dataIndex: 'vpn',
+
       width: 150,
     },
     {
       title: 'Status',
       dataIndex: 'status',
-      width: 200,
+      width: 150,
       filters: [
         {
           text: 'London',
@@ -203,6 +225,7 @@ const TableAlm = () => {
       title: 'Ação',
       key: 'action',
       width: 150,
+      // the parameter record is the item of the table
       render: (_, record) => (
         <Space size="middle">
           <Button onClick={() => showEditModal(record)}>Editar</Button>
@@ -214,24 +237,43 @@ const TableAlm = () => {
     },
   ];
 
-  // possível linhas da tabela
-  for (let i = 1; i <= 10; i++) {
-    initialData.push({
-      key: i,
-      name: 'teste',
-      vpn: 'Testando Vpn',
-      status: 'Testando Status',
-      // age: Number(`${i}2`),
-      // address: `New York No. ${i} Lake Park`,
-      // description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
-      login: 'qualquer ',
-      senha: 123454,
-      tipo: 'testando tipo',
-      url: 'Testando URL',
-    });
-  }
+  // linhas da Tabela, aqui renderiza as informações da tabela
+  // for (let key in dataAlm) {
+  //   initialData.push(dataAlm[key]);
+  //   initialData.push({
+  //     key: i,
+  //     name: "teste nome",
+  //     vpn: 'Testando Vpn',
+  //     status: 'Testando Status',
+  //     login: 'qualquer ',
+  //     senha: 123454,
+  //     tipo: 'testando tipo',
+  //     url: 'Testando URL',
+  //   });
+  // }
 
-  // essa função é para definir a tabela
+  // const tratamentoDados = () => {
+  //   const [var1, var2] = dataAlm;
+  //   return var1;
+  // };
+
+  // console.log(tratamentoDados());
+
+  // loop que veio junto com a framework Ant
+  // for (let i = 1; i <= 1; i++) {
+  //   initialData.push({
+  //     // key: i,
+  //     name: 'n',
+  //     vpn: 'Testando Vpn',
+  //     status: 'Testando Status',
+  //     login: 'qualquer',
+  //     senha: 123454,
+  //     tipo: 'testando tipo',
+  //     url: 'Testando URL',
+  //   });
+  // }
+
+  // Variável que define estilo da tabela principal
   const tableProps = {
     bordered: true,
     size: 'small',
@@ -270,7 +312,7 @@ const TableAlm = () => {
 
       {/* FIM ############# Container botao e barra de pesquisa */}
 
-      {/* Tabela modal */}
+      {/* Definição da tabela principal */}
       <Table
         {...tableProps}
         pagination={{
@@ -279,7 +321,7 @@ const TableAlm = () => {
         columns={columns}
         dataSource={filteredData}
       />
-      {/* FIM ############# Tabela modal */}
+      {/* FIM ############# Tabela principal */}
 
       {/* Esse modal é para cadastrar um novo item na tabela, apertando o botão de cadastro */}
       <Modal

@@ -61,11 +61,11 @@ const App = () => {
           <Content
             style={{
               margin: '24px 16px 0',
-              maxWidth: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '5vh',
+              // maxWidth: '100%',
+              // display: 'flex',
+              // alignItems: 'center',
+              // justifyContent: 'center',
+              // marginBottom: '5vh',
             }}
           >
             {/* <div

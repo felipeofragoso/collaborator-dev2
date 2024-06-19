@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
-import { Space, Table, Grid, Input, Button, Modal, Form, InputNumber, Popconfirm } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { storeAlm, getAlm } from '../../services/almService';
+import {
+  Space,
+  Table,
+  Grid,
+  Input,
+  Button,
+  Modal,
+  Form,
+  InputNumber,
+  Popconfirm,
+  Switch,
+} from 'antd';
 import './Table.css';
 
 const { useBreakpoint } = Grid;
 const { Search } = Input;
 
 const initialData = [];
-
-for (let i = 1; i <= 10; i++) {
-  initialData.push({
-    key: i,
-    name: 'teste',
-    age: Number(`${i}2`),
-    address: `New York No. ${i} Lake Park`,
-    description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
-    login: 'qualquer coisa',
-    senha: 123454,
-    tipo: 'qualquer tipo ',
-  });
-}
 
 const defaultTitle = () => 'Alm';
 const defaultFooter = () => 'footer';
@@ -35,6 +34,28 @@ const TableAlm = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [form] = Form.useForm();
+  const [cadastro, setCadastro] = useState({
+    nome: '',
+    url: '',
+    login: '',
+    senha: '',
+    tipo: '',
+    vpn: '',
+    status: '',
+  });
+  const [status, setStatus] = useState(false);
+  const [dataAlm, setDataAlm] = useState([]);
+
+  // Chamando os dados do banco e guardando em um useState para poder usar na lista, é preciso usar useEffect para não criar o erro do loop infinito na renderização
+  useEffect(() => {
+    const response = async () => {
+      const pegandoAlm = await getAlm();
+      console.log(pegandoAlm);
+      setDataAlm(pegandoAlm);
+    };
+
+    response();
+  }, []);
 
   // essa função é para filtrar a tabela
   const handleSearch = (value) => {
@@ -59,22 +80,37 @@ const TableAlm = () => {
   };
   // FIM ############# lógica abrir e fechar modal de cadastro de ALM
 
-  // essa função é para clicar no botão de ok no modal de cadastro de ALM
+  // essa função é para clicar no botão de OK dentro do modal de cadastro de ALM
   const handleAdd = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        form.resetFields();
-        setIsAddModalVisible(false);
-        const newItem = {
-          key: filteredData.length + 1,
-          ...values,
-        };
-        setFilteredData([...filteredData, newItem]);
-      })
-      .catch((info) => {
-        console.log('Validate Failed:', info);
-      });
+    if (
+      cadastro.nome !== '' &&
+      cadastro.url !== '' &&
+      cadastro.login !== '' &&
+      cadastro.senha !== '' &&
+      cadastro.tipo !== '' &&
+      cadastro.vpn !== '' &&
+      cadastro.status !== ''
+    ) {
+      return storeAlm(cadastro);
+    }
+
+    return alert('Preencha todos os campos!');
+    // setCadastro({ nome: '', url: '', login: '', senha: '', tipo: '', vpn: '', status: '' });
+
+    // form
+    //   .validateFields()
+    //   .then((values) => {
+    //     form.resetFields();
+    //     setIsAddModalVisible(false);
+    //     const newItem = {
+    //       key: filteredData.length + 1,
+    //       ...values,
+    //     };
+    //     setFilteredData([...filteredData, newItem]);
+    //   })
+    //   .catch((info) => {
+    //     console.log('Validate Failed:', info);
+    //   });
   };
 
   // essa função é para abrir o modal de edição de um item
@@ -88,7 +124,9 @@ const TableAlm = () => {
     setIsEditModalVisible(false);
     setEditingItem(null);
   };
+
   //  essa função é para salvar o item editado
+
   const handleEdit = () => {
     form
       .validateFields()
@@ -102,7 +140,7 @@ const TableAlm = () => {
         setEditingItem(null);
       })
       .catch((info) => {
-        console.log('Validate Failed:', info);
+        // console.log('Validate Failed:', info);
       });
   };
 
@@ -115,39 +153,39 @@ const TableAlm = () => {
   // esse array é para definir as colunas da tabela
   const columns = [
     {
-      title: 'Name',
+      title: 'Nome',
       dataIndex: 'name',
       width: 150,
     },
     {
-      title: 'Age',
+      title: 'Age trocar',
       dataIndex: 'age',
       sorter: (a, b) => a.age - b.age,
       width: 80,
     },
     {
       title: 'Login',
-      dataIndex: 'name',
+      dataIndex: 'login',
       width: 150,
     },
     {
-      title: 'senha',
-      dataIndex: 'name',
+      title: 'Senha',
+      dataIndex: 'senha',
       width: 150,
     },
     {
-      title: 'tipo',
-      dataIndex: 'name',
+      title: 'Tipo',
+      dataIndex: 'tipo',
       width: 150,
     },
     {
-      title: 'vpn',
-      dataIndex: 'name',
+      title: 'Vpn',
+      dataIndex: 'vpn',
       width: 150,
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
+      title: 'Status',
+      dataIndex: 'status',
       width: 200,
       filters: [
         {
@@ -162,19 +200,36 @@ const TableAlm = () => {
       onFilter: (value, record) => record.address.indexOf(value) === 0,
     },
     {
-      title: 'Action',
+      title: 'Ação',
       key: 'action',
       width: 150,
       render: (_, record) => (
         <Space size="middle">
-          <Button onClick={() => showEditModal(record)}>Edit</Button>
-          <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-            <a>Delete</a>
+          <Button onClick={() => showEditModal(record)}>Editar</Button>
+          <Popconfirm title="Deseja deletar?" onConfirm={() => handleDelete(record.key)}>
+            <a>Deletar</a>
           </Popconfirm>
         </Space>
       ),
     },
   ];
+
+  // possível linhas da tabela
+  for (let i = 1; i <= 10; i++) {
+    initialData.push({
+      key: i,
+      name: 'teste',
+      vpn: 'Testando Vpn',
+      status: 'Testando Status',
+      // age: Number(`${i}2`),
+      // address: `New York No. ${i} Lake Park`,
+      // description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
+      login: 'qualquer ',
+      senha: 123454,
+      tipo: 'testando tipo',
+      url: 'Testando URL',
+    });
+  }
 
   // essa função é para definir a tabela
   const tableProps = {
@@ -186,6 +241,12 @@ const TableAlm = () => {
     rowSelection: {},
     scroll: isSmallScreen ? { x: 'max-content', y: 620 } : { y: 620 },
     pagination: isSmallScreen ? { pageSize: 5 } : false,
+  };
+
+  // lógica do switch de status
+  const onChangeSwitch = (checked) => {
+    setCadastro({ ...cadastro, status: checked });
+    checked ? setStatus(false) : setStatus(true);
   };
 
   return (
@@ -220,41 +281,98 @@ const TableAlm = () => {
       />
       {/* FIM ############# Tabela modal */}
 
-     
-      {/* Esse modal é para cadastrar um novo item na tabela */}
+      {/* Esse modal é para cadastrar um novo item na tabela, apertando o botão de cadastro */}
       <Modal
-        title="Cadastrar Novo Item"
+        title="Cadastrar Novo ALM"
         visible={isAddModalVisible}
+        // função para fechar o modal de cadastro
         onCancel={handleAddCancel}
+        // função para que faz o botão OK do modal de cadastro ser executado
         onOk={handleAdd}
       >
         <Form form={form} layout="vertical" name="form_in_modal">
           <Form.Item
-            name="name"
-            label="Name"
-            rules={[{ required: true, message: 'Please input the name!' }]}
+            name="nameAlm"
+            label="Nome"
+            rules={[{ required: true, message: 'Coloque o nome por favor!' }]}
           >
-            <Input />
+            {/*dentro de setCadastro é criado um novo objeto {}, e dentro dele é criado uma cópia do objeto cadastro(está no useState) por meio do rest operator e em seguida é adicionado a propriedade a ser alterada ou criada  */}
+            <Input
+              type="text"
+              required
+              onChange={(e) => setCadastro({ ...cadastro, nome: e.target.value })}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="urlAlm"
+            label="Url"
+            rules={[{ required: true, message: 'Coloque a URL por favor!' }]}
+          >
+            <Input
+              type="text"
+              required
+              onChange={(e) => setCadastro({ ...cadastro, url: e.target.value })}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="loginAlm"
+            label="Login"
+            rules={[{ required: true, message: 'Coloque o usuário de login por favor!' }]}
+          >
+            <Input
+              type="text"
+              required
+              onChange={(e) => setCadastro({ ...cadastro, login: e.target.value })}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="senhaAlm"
+            label="Senha"
+            rules={[{ required: true, message: 'Coloque a senha por favor!' }]}
+          >
+            <Input
+              type="text"
+              required
+              onChange={(e) => setCadastro({ ...cadastro, senha: e.target.value })}
+            />
           </Form.Item>
           <Form.Item
-            name="age"
-            label="Age"
-            rules={[{ required: true, message: 'Please input the age!' }]}
+            name="tipoAlm"
+            label="Tipo"
+            rules={[{ required: true, message: 'Coloque o tipo por favor!' }]}
           >
-            <InputNumber min={0} />
+            <Input
+              type="text"
+              required
+              onChange={(e) => setCadastro({ ...cadastro, tipo: e.target.value })}
+            />
           </Form.Item>
           <Form.Item
-            name="address"
-            label="Address"
-            rules={[{ required: true, message: 'Please input the address!' }]}
+            name="vpnAlm"
+            label="Vpn"
+            rules={[{ required: true, message: 'Coloque o vpn por favor!' }]}
           >
-            <Input />
+            <Input
+              type="text"
+              required
+              onChange={(e) => setCadastro({ ...cadastro, vpn: e.target.value })}
+            />
+          </Form.Item>
+
+          {/* Aqui entra o Switch */}
+
+          <Form.Item name="statusAlm" label="Status" rules={[{ required: true }]}>
+            <Switch onChange={() => onChangeSwitch(status)} />
+            {status ? <p>Ativo</p> : <p>Inativo</p>}
           </Form.Item>
         </Form>
       </Modal>
       {/* FIM ############# Modal Cadastrar Alm */}
 
-      {/* Esse modal é para editar um item na tabela */}
+      {/* Esse modal é para editar um item na tabela pelo botão de editar */}
 
       <Modal
         title="Editar Item"

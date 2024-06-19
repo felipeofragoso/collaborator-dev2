@@ -14,6 +14,7 @@ import ToggleThemeButton from './components/ToggleThemeButton';
 import { Layout, Button } from "antd";
 
 import "./App.css";
+import Accessibility from "./components/accessibility/accessibility";
 
 
 const { Content, Header, Sider, Footer } = Layout;

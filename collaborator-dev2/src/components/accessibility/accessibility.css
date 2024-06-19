@@ -1,0 +1,69 @@
+.decreaseFontSize,
+.increaseFontSize,
+.changeThema {
+    border: none;
+    border-radius: 100px;
+    height: 35px;
+    width: 35px;
+    font-size: 17px;
+    text-align: center;
+    align-items: center;
+    background-color: transparent;
+    margin-right: 10px;
+
+}
+.divAccessibility{
+    background-color: red;
+}
+.themaIcon {
+    background: none;
+    margin-right: 10px;
+    
+    
+}
+.changeThema{
+    
+    width: 50px;
+    height: 50px;
+    
+    
+}
+.decreaseFontSize {
+    border: none;
+
+    background-image: url('../../assets/aMenus.png');
+    background-size: 30px;
+    background-repeat: no-repeat;
+
+}
+
+
+.increaseFontSize {
+    border: none;
+    border-radius: 100px;
+    background-image: url('../../assets/aPlus.png');
+    background-size: 30px;
+    background-repeat: no-repeat;
+    margin-right: 20px;
+}
+
+
+
+.decreaseFontSize:focus,
+.increaseFontSize:focus,
+.changeThema:focus {
+    border-color: transparent;
+    outline: none;
+
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+
+}
+.translateIcon{
+margin-right: 10px;
+width: 30px;
+height: 0px;
+}

@@ -3,15 +3,17 @@ import './accessibility.css'
 // import {  useTheme } from '../../themes/Dark';
 import i18n from '../i18n';
 import { MoonOutlined  } from '@ant-design/icons';
+import { MdOutlineTranslate } from "react-icons/md";
+
 
 
 //variaveis que definem o valor max e min da fonte 
 const MinFontSize = 10
-const MaxFontSize = 28
+const MaxFontSize = 22
 
 //Função para aumentar e diminuir a fonte, no selectors passar os elementos que quer aumentar e diminuir da pagina
 function handleFontSize(updateValue) {
-  const selectors = "h1, span";
+  const selectors = "h1, h2, h3, h4, h5, h6, a, p, span";
   let elements = document.querySelectorAll(selectors);
   elements.forEach((element) => {
       let currentFontSize = parseInt(window.getComputedStyle(element).fontSize);
@@ -50,7 +52,7 @@ function Accessibility() {
   return(
      <div className='divAccessibility'>
         {/* os botoes de acessibilidade e incrementa a função de aumento e diminuição de fonte */}
-   <button className='translateIcon' onClick={toggleLanguage}></button>
+   <button className='translateIcon' aria-label='Mudar de idioma' onClick={toggleLanguage}><MdOutlineTranslate  className='translateIcon' style={{fontSize:"30px"}}/> </button>
    {/* <ToggleButton /> */}
     <button  id= "decrease" className='decreaseFontSize' aria-label='Diminuir o tamanho da fonte,-A' onClick={() => handleFontSize(-1)}></button>
     <button  id= "increase" className='increaseFontSize' aria-label='Aumentar o tamnho da fonte' onClick={() => handleFontSize(1)}></button>
@@ -60,3 +62,10 @@ function Accessibility() {
 
 
 export default Accessibility;
+
+//area label 
+//tab index
+//puxar icone de tradução
+//ajustar o tamanho da fonte OK
+//definir o aumento das fontes, seletores, h1, h2.... OK
+

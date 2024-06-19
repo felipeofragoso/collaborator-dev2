@@ -3,7 +3,7 @@
     "translation" :{
     
     "Home":"Home",
-    "Pagina Inicial":"Home",
+    "Página Inicial":"Home",
     "Novo Projeto":"New Project",
     "Nova Tarefa":"New Task",
     "Relatórios":"Reports",
@@ -18,6 +18,7 @@
     "Motivos de Eventos":"Event reasons",
     "Mensagens":"Messages",
     "Voltar":"Return"
+    
     }
     
     }

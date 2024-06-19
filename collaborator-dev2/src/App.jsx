@@ -12,7 +12,6 @@ import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Registrations from './pages/Registrations/Registrations';
 import ToggleThemeButton from './components/ToggleThemeButton';
 import { Layout, Button } from 'antd';
-
 import "./App.css";
 import Accessibility from "./components/accessibility/accessibility";
 
@@ -57,6 +56,7 @@ const App = () => {
               onClick={() => setCollapsed(!collapsed)}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             />
+            <Accessibility/>
           </Header>
           <Content
             style={{

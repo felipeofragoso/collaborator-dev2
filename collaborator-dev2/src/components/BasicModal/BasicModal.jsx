@@ -111,7 +111,7 @@ const BasicModal = ({ modalOpen, setModalOpen }) => {
           onClick={() => handleNavigate('/')}
           style={{ marginBottom: '16px', width: '100%',  background:'linear-gradient(to bottom, #2d939c, #68C7CF)' }}
         >
-          {t("Pagina Inicial")}
+          {t("Página Inicial")}
         </Button>
 
       </div>

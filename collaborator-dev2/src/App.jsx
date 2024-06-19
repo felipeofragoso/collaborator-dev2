@@ -27,8 +27,8 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter>
-      <Layout style={{ minHeight: '100vh' }}>
+    <BrowserRouter >
+      <Layout style={{ minHeight: '100vh' }} >
         <Sider
           collapsed={collapsed}
           collapsible

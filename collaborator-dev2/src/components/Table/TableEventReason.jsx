@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Space, Table, Grid, Input, Button, Modal, Form, InputNumber, Popconfirm } from 'antd';
 import "./Table.css"
-
+import api from '../../services/api';
 
 const { useBreakpoint } = Grid;
 const { Search } = Input;
 
-const initialData = [];
-for (let i = 1; i <= 10; i++) {
-  initialData.push({
-    key: i,
-    name: 'John Brown',
-    age: Number(`${i}2`),
-    address: `New York No. ${i} Lake Park`,
-    description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
-  });
-}
+// const initialData = [];
+// for (let i = 1; i <= 10; i++) {
+//   initialData.push({
+//     key: i,
+//     name: 'John Brown',
+//     age: Number(`${i}2`),
+//     address: `New York No. ${i} Lake Park`,
+//     description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
+//   });
+// }
 
 const defaultTitle = () => 'Motivos de Eventos';
 const defaultFooter = () => 'Here is footer';
@@ -25,18 +25,39 @@ const TableEventReason = () => {
   const isSmallScreen = screens.xs; // Consider xs as small screen
 
   const [searchText, setSearchText] = useState('');
-  const [filteredData, setFilteredData] = useState(initialData);
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [form] = Form.useForm();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/event_reason/listar');
+        const data = response.data.map((item, index) => ({
+          key: index + 1,
+          name: item.nome,
+          description: item.descricao,  
+          status: item.status,
+          ...item,
+        }));
+        setData(data);
+        setFilteredData(data);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const handleSearch = (value) => {
     setSearchText(value);
-    const filtered = initialData.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase()) ||
-      item.age.toString().includes(value) ||
-      item.address.toLowerCase().includes(value.toLowerCase())
+    const filtered = data.filter((item) =>
+      item.nome.toLowerCase().includes(value.toLowerCase()) ||
+      item.descricao.toString().includes(value) ||
+      item.status.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredData(filtered);
   };
@@ -59,7 +80,9 @@ const TableEventReason = () => {
           key: filteredData.length + 1,
           ...values,
         };
-        setFilteredData([...filteredData, newItem]);
+        const newData = [...data, newItem];
+        setData(newData);
+        setFilteredData(newData);
       })
       .catch(info => {
         console.log('Validate Failed:', info);
@@ -83,9 +106,10 @@ const TableEventReason = () => {
       .then(values => {
         form.resetFields();
         setIsEditModalVisible(false);
-        const updatedData = filteredData.map((item) => 
+        const updatedData = data.map((item) => 
           item.key === editingItem.key ? { ...item, ...values } : item
         );
+        setData(updatedData);
         setFilteredData(updatedData);
         setEditingItem(null);
       })
@@ -95,7 +119,8 @@ const TableEventReason = () => {
   };
 
   const handleDelete = (key) => {
-    const newData = filteredData.filter((item) => item.key !== key);
+    const newData = data.filter((item) => item.key !== key);
+    setData(newData);
     setFilteredData(newData);
   };
 
@@ -106,23 +131,22 @@ const TableEventReason = () => {
       width: 150,
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      sorter: (a, b) => a.age - b.age,
+      title: 'Description',
+      dataIndex: 'description',
       width: 80,
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
+      title: 'Status',
+      dataIndex: 'status',
       width: 200,
       filters: [
         {
-          text: 'London',
-          value: 'London',
+          text: '',
+          value: '',
         },
         {
-          text: 'New York',
-          value: 'New York',
+          text: '',
+          value: '',
         },
       ],
       onFilter: (value, record) => record.address.indexOf(value) === 0,
@@ -140,7 +164,7 @@ const TableEventReason = () => {
         </Space>
       ),
     },
-  ];
+  ];  
 
   const tableProps = {
     bordered: true,

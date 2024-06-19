@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { storeRole, getRole } from '../../services/roleService';
 import { Space, Table, Grid, Input, Button, Modal, Form, InputNumber, Popconfirm, Switch, } from 'antd';
 import './Table.css';
+import { MdDeleteForever} from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+
 const { useBreakpoint } = Grid;
 const { Search } = Input;
 
@@ -173,9 +176,9 @@ const TableFunction = () => {
       width: 150,
       render: (_, record) => (
         <Space size="middle">
-          <Button onClick={() => showEditModal(record)}>Editar</Button>
+          <Button onClick={() => showEditModal(record)}> <FaEdit/></Button>
           <Popconfirm title="Tem certeza que deseja excluir?" onConfirm={() => handleDelete(record.key)}>
-            <a>Deletar</a>
+            <Button> <MdDeleteForever/> </Button>
           </Popconfirm>
         </Space>
       ),

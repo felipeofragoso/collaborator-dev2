@@ -55,7 +55,7 @@ function Accessibility() {
    <button className='translateIcon' aria-label='Mudar de idioma' onClick={toggleLanguage}><MdOutlineTranslate  className='translateIcon' style={{fontSize:"30px"}}/> </button>
    {/* <ToggleButton /> */}
     <button  id= "decrease" className='decreaseFontSize' aria-label='Diminuir o tamanho da fonte,-A' onClick={() => handleFontSize(-1)}></button>
-    <button  id= "increase" className='increaseFontSize' aria-label='Aumentar o tamnho da fonte' onClick={() => handleFontSize(1)}></button>
+    <button  id= "increase" className='increaseFontSize' aria-label='Aumentar o tamnho da fonte,+A' onClick={() => handleFontSize(1)}></button>
     </div>
     )
 }

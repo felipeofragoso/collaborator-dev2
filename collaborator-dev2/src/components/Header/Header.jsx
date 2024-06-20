@@ -1,5 +1,5 @@
 import { LogoutOutlined } from "@ant-design/icons";
-import { HeaderContainer } from "../../styles/header.styles";
+// import { HeaderContainer } from "../../styles/header.styles";
 
 const Header = () => {
     return (

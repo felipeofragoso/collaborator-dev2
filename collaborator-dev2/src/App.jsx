@@ -59,7 +59,11 @@ const App = () => {
                  : 'linear-gradient(to bottom, #2d939c, #68C7CF)',
                color: darkTheme ? '#fff' : '#000',
             }}
+<<<<<<< HEAD
           >*/}
+=======
+            >
+>>>>>>> ff9f1e92d91609f7946b861f3ccef3a6d0c2a4f2
               <Layout style={{backgroundColor:"transparent",
                 display:"flex", flexDirection:'row',
                 justifyContent:"space-between", height:"4em"

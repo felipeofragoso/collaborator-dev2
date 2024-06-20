@@ -4,6 +4,26 @@ import { storeRole, getRole, updateRole, deleteRole } from '../../services/roleS
 import './Table.css';
 import { MdDeleteForever} from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+<<<<<<< HEAD
+=======
+
+const { useBreakpoint } = Grid;
+const { Search } = Input;
+
+const initialData = [];
+// for (let i = 1; i <= 10; i++) {
+//   initialData.push({
+//     key: i,
+//     nome: 'Python',
+//     descricao: Number(`${i}2`),
+//     status: `New York No. ${i} Lake Park`,
+//     description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
+//   });
+// }
+
+const defaultTitle = () => 'Funçao';
+const defaultFooter = () => '';
+>>>>>>> ff9f1e92d91609f7946b861f3ccef3a6d0c2a4f2
 
 const { useBreakpoint } = Grid;
 const { Search } = Input;
@@ -190,7 +210,75 @@ const TableFunction = () => {
 
             {/* FIM ############# Container botao e barra de pesquisa */}
 
+<<<<<<< HEAD
 
+=======
+    const columns = [
+        {
+            title: 'Nome',
+            dataIndex: 'nome',
+            key: 'nome',
+            width: 150,
+        },
+        {
+            title: 'Descrição',
+            dataIndex: 'descricao',
+            key: 'descricao',
+            width: 150,
+        },
+      ],
+      onFilter: (value, record) => record.status.indexOf(value) === 0,
+    },
+    {
+      title: 'Ação',
+      key: 'acao',
+      width: 150,
+      render: (_, record) => (
+        <Space size="middle">
+          <Button onClick={() => showEditModal(record)}> <FaEdit/></Button>
+          <Popconfirm title="Tem certeza que deseja excluir?" onConfirm={() => handleDelete(record.key)}>
+            <Button> <MdDeleteForever/> </Button>
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
+
+  const tableProps = {
+    bordered: true,
+    size: 'small',
+    title: defaultTitle,
+    showHeader: true,
+    footer: defaultFooter,
+    rowSelection: {},
+    scroll: isSmallScreen ? { x: 'max-content', y: 620 } : { y: 620 },
+    pagination: isSmallScreen ? { pageSize: 5 } : false,
+  };
+
+    // lógica do switch de status
+    const onChangeSwitch = (checked) => {
+      setCadastro({ ...cadastro, status: checked });
+      checked ? setStatus(false) : setStatus(true);
+    };
+
+  return (
+    <>
+          {/* Container botao e barra de pesquisa */}
+      <Space style={{ marginBottom: 16 }}>
+        <Search
+          placeholder="Procurar..."
+          enterButton
+          onSearch={handleSearch}
+        />
+        <Button type="primary" onClick={showAddModal}>
+          Cadastrar
+        </Button>
+      </Space>
+
+            {/* FIM ############# Container botao e barra de pesquisa */}
+
+
+>>>>>>> ff9f1e92d91609f7946b861f3ccef3a6d0c2a4f2
                   {/* Tabela modal */}
       <Table
         {...tableProps}
@@ -227,6 +315,24 @@ const TableFunction = () => {
               type="text"
               required
               onChange={(e) => setCadastro({ ...cadastro, nome: e.target.value })}
+<<<<<<< HEAD
+=======
+            />
+
+
+            <Input />
+          </Form.Item>
+          <Form.Item
+          
+            name="descricao"
+            label="Descrição"
+            rules={[{ required: false, message: 'Por favor, insira a descrição!' }]}
+          >
+            <Input
+              type="text"
+              required
+              onChange={(e) => setDescricao({ ...cadastro, descricao: e.target.value })}
+>>>>>>> ff9f1e92d91609f7946b861f3ccef3a6d0c2a4f2
             />
 
 

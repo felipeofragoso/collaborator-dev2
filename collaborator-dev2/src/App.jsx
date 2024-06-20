@@ -59,13 +59,19 @@ const App = () => {
                  : 'linear-gradient(to bottom, #2d939c, #68C7CF)',
                color: darkTheme ? '#fff' : '#000',
             }}
-          > */}
+            >
+              <Layout style={{backgroundColor:"transparent",
+                display:"flex", flexDirection:'row',
+                justifyContent:"space-between", height:"4em"
+              }}>
             <Button
               type="text"
               className="toggle"
               onClick={() => setCollapsed(!collapsed)}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            />
+              />
+              <Accessibility/>
+              </Layout>
           </Header>
           <Content
             style={{

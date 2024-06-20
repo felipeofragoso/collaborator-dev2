@@ -85,7 +85,7 @@ const TableFunction = () => {
 
     const handleDelete = async (idRole) => {
         try {
-            await deleteRole(idRole);
+            await deleteRole(record);
             fetchData();
         } catch (error) {
             console.error('Erro ao deletar:', error);
